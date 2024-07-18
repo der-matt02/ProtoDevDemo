@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ProtoDevDemo.ViewModels"
+             x:Class="ProtoDevDemo.Views.PaginaPrincipalView"
+             Title="PaginaPrincipalView"
+             x:Name="MiPaginaPrincipal">
+
+    <ContentPage.BindingContext>
+        <local:PaginaPrincipalViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Label Text="Herramientas de Calidad" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Text="Para tus Proyectos de Electrónica y Software" FontSize="18" HorizontalOptions="Center"/>
+            <Image Source="https://arduino.cl/wp-content/uploads/2018/12/2018-12-27-17_32_24-Window-e1683927716802-300x141.png" HeightRequest="200" Aspect="AspectFit" HorizontalOptions="Center"/>
+            <Label Text="Proto DEV se conceptualiza como un e-commerce desarrollado para el espacio web el cual se especializa en el suministro y venta de componentes electrónicos puntuales como placas de desarrollo, componentes electrónicos y herramientas, enfocadas al desempeño de actividades llevadas a cabo por desarrolladores, entusiastas de la electrónica, profesionales, estudiantes y más; quienes desean encontrar y adquirir equipo para realizar sus proyectos de manera eficiente y creativa; contando con un extenso catálogo y los precios más competitivos del mercado." FontSize="14" HorizontalOptions="Center"/>
+            <Label Text="Mayor variedad de productos" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Text="Se ofrece una gama más amplia de productos electrónicos que las tiendas físicas, con una selección cuidadosamente curada de placas de desarrollo populares, protoboards, kits de inicio y una variedad de componentes electrónicos esenciales." FontSize="14" HorizontalOptions="Center"/>
+            <Label Text="Comodidad y Acesibilidad" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Text="Los clientes pueden comprar desde cualquier lugar y en cualquier momento, sin tener que desplazarse a tiendas físicas; lo que es especialmente valioso para aquellos que habitan en zonas rurales o remotas con acceso limitado." FontSize="14" HorizontalOptions="Center"/>
+            <Button Text="Ver Catálogo" Command="{Binding VerCatalogoCommand}" BackgroundColor="DodgerBlue" TextColor="White" HorizontalOptions="Center"/>
+            <Button Text="Carrito de Compras" Command="{Binding VerCarritoComprasCommand}" BackgroundColor="DodgerBlue" TextColor="White" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ProtoDevDemo.ViewModels"
+             x:Class="ProtoDevDemo.Views.CartPage"
+             x:Name="MiCartPage">
+
+    <ContentPage.BindingContext>
+        <local:CarritoComprasViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Label Text="Carrito de Compras" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
+            <Button Text="Ver Carrito de Compras" 
+                    Command="{Binding DevuelveListadoCarritoComprasCommand}" 
+                    BackgroundColor="DodgerBlue" 
+                    TextColor="White"/>
+            <CollectionView ItemsSource="{Binding Model}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
+                            <VerticalStackLayout>
+                                <Image Source="{Binding ImagenCarrito}" HeightRequest="100" Aspect="AspectFit"/>
+                                <Label Text="{Binding NombreProductoCarrito}" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding PrecioCarrito, StringFormat='{0:C}'}" FontSize="14" TextColor="Green"/>
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Button Text="-" Command="{Binding Path=BindingContext.ComandoDisminuirCantidad, Source={x:Reference Name=MiCartPage}}" CommandParameter="{Binding .}" WidthRequest="30" BackgroundColor="DodgerBlue" TextColor="White" />
+                                    <Label Text="{Binding cantidad}" FontSize="14" VerticalOptions="Center"/>
+                                    <Button Text="+" Command="{Binding Path=BindingContext.ComandoAumentarCantidad, Source={x:Reference Name=MiCartPage}}" CommandParameter="{Binding .}" WidthRequest="30" BackgroundColor="DodgerBlue" TextColor="White" />
+                                </StackLayout>
+                                <Label Text="{Binding Total, StringFormat='{0:C}'}" FontSize="14"/>
+                                <Button Text="Eliminar del carrito" Command="{Binding Path=BindingContext.ComandoEliminarDelCarrito, Source={x:Reference Name=MiCartPage}}" CommandParameter="{Binding .}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Padding="10">
+                <Label Text="Subtotal: " FontSize="16" FontAttributes="Bold"/>
+                <Label Text="{Binding Subtotal, StringFormat='{0:C}'}" FontSize="16" FontAttributes="Bold"/>
+            </StackLayout>
+            <Button Text="Proceder al pago" BackgroundColor="Orange" TextColor="White" HorizontalOptions="End"/>
+            <Button Text="Retornar al Catálogo" Command="{Binding IrALaPaginaPrincipalCommand}" BackgroundColor="DodgerBlue" TextColor="White"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

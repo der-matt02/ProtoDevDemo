@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ProtoDevDemo.ViewModels"
+             x:Class="ProtoDevDemo.Views.MainPage"
+             x:Name="mainPage">
+
+    <ContentPage.BindingContext>
+        <local:CategoriaViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Label Text="Productos" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
+            <Picker Title="Seleccione el tipo de producto" SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>PDDs</x:String>
+                        <x:String>SBCs</x:String>
+                        <x:String>Integrados</x:String>
+                        <x:String>Accesorios</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <CollectionView ItemsSource="{Binding Model}" ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
+                            <VerticalStackLayout>
+                                <Image Source="{Binding Imagen}" HeightRequest="100" Aspect="AspectFit"/>
+                                <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding Descripcion}" FontSize="14" TextColor="Gray"/>
+                                <Label Text="{Binding Precio, StringFormat='{0:C}'}" FontSize="14" TextColor="Green"/>
+                                <Button Text="Agregar al carrito" Command="{Binding BindingContext.ComandoGuardarAlCarrito, Source={x:Reference Name=mainPage}}" CommandParameter="{Binding .}" BackgroundColor="DodgerBlue" TextColor="White"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Ir al carrito de compras" Command="{Binding IrAlCarritoCommand}" BackgroundColor="DodgerBlue" TextColor="White"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
