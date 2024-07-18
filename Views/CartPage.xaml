@@ -11,6 +11,11 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Button Text="Menú" 
+                Command="{Binding ComandoVolverAlMenuPrincipal}" 
+                BackgroundColor="DodgerBlue" 
+                TextColor="White" 
+                HorizontalOptions="Start"/>
             <Label Text="Carrito de Compras" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
             <Button Text="Ver Carrito de Compras" 
                     Command="{Binding DevuelveListadoCarritoComprasCommand}" 

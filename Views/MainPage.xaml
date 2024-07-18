@@ -11,6 +11,11 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Button Text="Menú" 
+                Command="{Binding ComandoVolverAlMenuPrincipal}" 
+                BackgroundColor="DodgerBlue" 
+                TextColor="White" 
+                HorizontalOptions="Start"/>
             <Label Text="Productos" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
             <Picker Title="Seleccione el tipo de producto" SelectedIndexChanged="OnPickerSelectedIndexChanged">
                 <Picker.ItemsSource>

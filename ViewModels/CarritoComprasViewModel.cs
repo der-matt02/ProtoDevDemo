@@ -35,6 +35,7 @@ namespace ProtoDevDemo.ViewModels
         public ICommand ComandoAumentarCantidad { get; }
         public ICommand ComandoDisminuirCantidad { get; }
         public ICommand ComandoCalculoSubtotal { get; }
+        public ICommand ComandoVolverAlMenuPrincipal { get; }
         public double Subtotal { get; set; }
 
         // Nuevo comando
@@ -53,6 +54,7 @@ namespace ProtoDevDemo.ViewModels
             ComandoActualizarCarrito = new Command<CarritoCompras>(ActualizarCarrito);
             IrALaPaginaPrincipalCommand = new Command(IrALaPaginaPrincipal);
             DevuelveListadoCarritoComprasCommand = new Command(DevuelveListadoCarritoCompras); // Inicialización del nuevo comando
+            ComandoVolverAlMenuPrincipal = new Command(VolverMenuPrincipal);
         }
         private void CalculoSubtotal()
         {
@@ -130,6 +132,10 @@ namespace ProtoDevDemo.ViewModels
             // Devuelve el listado de productos del carrito de compras
             Model = App.ProtoBDRepo.DevuelveListadoCarritoCompras();
             ComandoCalculoSubtotal.Execute(null);
+        }
+        private void VolverMenuPrincipal()
+        {
+            Shell.Current.GoToAsync("//PaginaPrincipalView");
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

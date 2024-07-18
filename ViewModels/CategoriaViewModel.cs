@@ -35,6 +35,7 @@ namespace ProtoDevDemo.ViewModels
         public ICommand ComandoRetornarVarios { get; }
         public ICommand IrAlCarritoCommand { get; }
         public ICommand ComandoGuardarAlCarrito { get; }
+        public ICommand ComandoVolverAlMenuPrincipal { get; }
 
 
         public ProtoBDRepo BDRepo { get; set; }
@@ -43,8 +44,8 @@ namespace ProtoDevDemo.ViewModels
         public CategoriaViewModel()
         {
             Model = new List<Producto>();
-            
 
+            ComandoVolverAlMenuPrincipal = new Command(VolverMenuPrincipal);
             // Inicializa los comandos
             ComandoRetornarPDDs = new Command(async () => await RetornarPlacasDesarrollo());
             ComandoRetornarSBCs = new Command(async () => await RetornarSBC());
@@ -55,6 +56,7 @@ namespace ProtoDevDemo.ViewModels
             ComandoGuardarAlCarrito = new Command<Producto>(GuardarAlCarrito);
             // Ejecutar el comando al inicio
             ComandoRetornarVarios.Execute(null);
+
         }
         private async void GuardarAlCarrito(Producto producto)
         {
@@ -126,6 +128,11 @@ namespace ProtoDevDemo.ViewModels
         {
             // Navega a CartPage
             Shell.Current.GoToAsync("//CartPage");
+        }
+
+        private void VolverMenuPrincipal()
+        {
+            Shell.Current.GoToAsync("//PaginaPrincipalView");
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
